@@ -3,8 +3,9 @@ import random
 import os
 	
 def main():
-	
-	os.system('cls' if os.name =='nt' else 'clear') # Clear terminal
+
+	# Clear terminal
+	os.system('cls' if os.name =='nt' else 'clear') # nt means Windows, else Linux
 	
 	print('Welcome to the Moose Multiplication Game!')
 	print(giveAward('moose0'))
@@ -23,21 +24,22 @@ def main():
 	
 	while c == 'y':
 		
-		os.system("cls" if os.name == "nt" else "clear") # Clear terminal
+		# Clear terminal
+		os.system('cls' if os.name =='nt' else 'clear') # nt means Windows, else Linux
 		
 		a = random.randint(minim, maxim)
 		b = random.randint(minim, maxim)
-		ans = a*b
+		ans = str(a*b)
 		
 		t_init = time.time()
 		
-		guess = int(input(f'What is {a} * {b} ?\n'))
+		guess = input(f'What is {a} * {b} ?\n')
 		
-		while guess != ans and guess != 0:
-			guess = int(input(f'\nWrong... Try again\n'))
-			if guess == 0:
+		while guess != ans and guess != 'give up':
+			guess = input(f'\nWrong... Try again\n')
+			if guess == 'give up':
 				break
-		if guess == 0:
+		if guess == 'give up':
 			print(f'\nYou gave up.\nThe correct answer was {ans}.')
 		else:
 			t_end = time.time()
@@ -50,9 +52,10 @@ def main():
 			else:
 			 	print(giveAward('moose'))
 		
-		c = str(input('\nContinue? (y/n)\n'))
+		c = input('\nContinue? (y/n)\n')
 		
-	os.system('cls' if os.name =='nt' else 'clear') # Clear terminal
+	# Clear terminal
+	os.system('cls' if os.name =='nt' else 'clear') # nt means Windows, else Linux
 	
 	
 def giveAward(award):
