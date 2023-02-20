@@ -1,10 +1,10 @@
 import time
 import random
-from os import system
+import os
 	
 def main():
 	
-	system('clear')
+	os.system('cls' if os.name =='nt' else 'clear') # Clear terminal
 	
 	print('Welcome to the Moose Multiplication Game!')
 	print(giveAward('moose0'))
@@ -23,7 +23,7 @@ def main():
 	
 	while c == 'y':
 		
-		system('clear')
+		os.system("cls" if os.name == "nt" else "clear") # Clear terminal
 		
 		a = random.randint(minim, maxim)
 		b = random.randint(minim, maxim)
@@ -52,7 +52,7 @@ def main():
 		
 		c = str(input('\nContinue? (y/n)\n'))
 		
-	system('clear')
+	os.system('cls' if os.name =='nt' else 'clear') # Clear terminal
 	
 	
 def giveAward(award):
