@@ -1,5 +1,30 @@
 # Moose Multiplication Game
 
-Game in terminal that let's you practice mental multiplications for numbers up to 100. ASCII art rewards for quick times.
+```text
+ ___            ___
+/   \          /   \ 
+\_   \        /  __/ 
+ _\   \      /  /__
+ \___  \____/   __/ 
+     \_       _/ 
+       | @ @  \_
+       |
+     _/     /\ 
+    /o)  (o/\ \_
+    \_____/ /
+      \____/
+```
 
-Works now on Windows and Linux.
+A simple terminal-based game for practicing mental multiplication. Players are given random multiplication problems and receive ASCII art rewards based on how quickly they answer.
+
+## Features
+
+- Practice multiplication with adjustable number ranges
+- ASCII art rewards based on speed
+- Option to quit a round by typing "give up" (not recommended)
+- Cross-platform support (Windows, Linux, macOS)
+
+## How to Run
+
+```bash
+python main.py
