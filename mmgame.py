@@ -3,63 +3,32 @@ import random
 import os
 
 
-def main():
-
-    # Clear terminal
-    os.system("cls" if os.name == "nt" else "clear")  # nt means Windows, else Linux
-
-    print("Welcome to the Moose Multiplication Game!")
-    print(giveAward("moose0"))
-
-    c = "y"
-
-    time.sleep(1)
-    r = str(input("\nDo you want to use the default range (2-99)? (y/n)\n"))
-
-    if r == "y":
-        minim = 2
-        maxim = 99
-    else:
-        minim = int(input("Enter minimum number:\n"))
-        maxim = int(input("Enter maximum number:\n"))
-
-    while c == "y":
-
-        # Clear terminal
-        os.system("cls" if os.name == "nt" else "clear")  # nt means Windows, else Linux
-
-        a = random.randint(minim, maxim)
-        b = random.randint(minim, maxim)
-        ans = str(a * b)
-
-        t_init = time.time()
-
-        guess = input(f"What is {a} * {b} ?\n")
-
-        while guess != ans and guess != "give up":
-            guess = input(f"\nWrong... Try again\n")
-            if guess == "give up":
-                break
-        if guess == "give up":
-            print(f"\nYou gave up.\nThe correct answer was {ans}.")
-        else:
-            t_end = time.time()
-            t = round(t_end - t_init, 1)
-            print(f"\nCorrect! Your time was {t} seconds.")
-            if t < 10:
-                print(giveAward("bat"))
-            elif t >= 10 and t < 20:
-                print(giveAward("elephant"))
-            else:
-                print(giveAward("moose"))
-
-        c = input("\nContinue? (y/n)\n")
-
-    # Clear terminal
-    os.system("cls" if os.name == "nt" else "clear")  # nt means Windows, else Linux
+DEFAULT_MIN = 2
+DEFAULT_MAX = 99
 
 
-def giveAward(award):
+def clear_screen() -> None:
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def get_int(prompt: str) -> int:
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Please enter a valid integer.")
+
+
+def give_award(award: str) -> str:
+    """Return the ASCII art award corresponding to the given award name.
+
+    Args:
+        award: The award identifier.
+
+    Returns:
+        A string containing the matching ASCII art. If the award name is
+        unknown, the default moose art is returned.
+    """
 
     moose0 = """
  ___            ___
@@ -126,6 +95,75 @@ Here's a moose."""
         return moose1
     else:
         return moose0
+
+
+def main() -> None:
+    """Start the multiplication game and manage the overall program flow."""
+
+    clear_screen()
+    print("Welcome to the Moose Multiplication Game!")
+    print(give_award("moose0"))
+
+    time.sleep(1)
+    response = input("\nUse default range (2-99)? (y/n): ").strip().lower()
+    should_use_default_range = response == "y"
+    if should_use_default_range:
+        min_number = DEFAULT_MIN
+        max_number = DEFAULT_MAX
+    else:
+        min_number = get_int("Enter minimum number: ")
+        max_number = get_int("Enter maximum number: ")
+
+    does_want_to_play = True
+    while does_want_to_play:
+        does_want_to_play = play_round(min_number, max_number)
+
+    clear_screen()
+
+
+def play_round(min_number: int, max_number: int) -> bool:
+    """Run one round of the multiplication game.
+
+    Randomly generates two numbers within the given range, prompts the
+    player for an answer, and returns whether the player wants to play
+    another round.
+
+    Args:
+        min_number: The lowest value allowed for generated factors.
+        max_number: The highest value allowed for generated factors.
+
+    Returns:
+        True if the player chooses to continue, otherwise False.
+    """
+
+    clear_screen()
+
+    # Setup the round
+    a = random.randint(min_number, max_number)
+    b = random.randint(min_number, max_number)
+    correct_answer = str(a * b)
+    t_init = time.time()
+
+    guess = input(f"What is {a} * {b} ?\n")
+    while guess != correct_answer and guess != "give up":
+        guess = input(f"\nWrong... Try again or 'give up'\n")
+        if guess == "give up":
+            break
+    if guess == "give up":
+        print(f"\nYou gave up.\nThe correct answer was {correct_answer}.")
+    else:
+        t_end = time.time()
+        t = round(t_end - t_init, 1)
+        print(f"\nCorrect! Your time was {t} seconds.")
+        if t < 10:
+            print(give_award("bat"))
+        elif t >= 10 and t < 20:
+            print(give_award("elephant"))
+        else:
+            print(give_award("moose"))
+
+    does_want_to_play = input("\nContinue? (y/n)\n") == "y"
+    return does_want_to_play
 
 
 if __name__ == "__main__":
