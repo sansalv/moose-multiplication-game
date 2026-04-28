@@ -1,66 +1,67 @@
 import time
 import random
 import os
-	
+
+
 def main():
 
-	# Clear terminal
-	os.system('cls' if os.name =='nt' else 'clear') # nt means Windows, else Linux
-	
-	print('Welcome to the Moose Multiplication Game!')
-	print(giveAward('moose0'))
-	
-	c = 'y'
-	
-	time.sleep(1)
-	r = str(input('\nDo you want to use the default range (2-99)? (y/n)\n'))
-	
-	if r == 'y':
-		minim = 2
-		maxim = 99
-	else:
-		minim = int(input('Enter minimum number:\n'))
-		maxim = int(input('Enter maximum number:\n'))
-	
-	while c == 'y':
-		
-		# Clear terminal
-		os.system('cls' if os.name =='nt' else 'clear') # nt means Windows, else Linux
-		
-		a = random.randint(minim, maxim)
-		b = random.randint(minim, maxim)
-		ans = str(a*b)
-		
-		t_init = time.time()
-		
-		guess = input(f'What is {a} * {b} ?\n')
-		
-		while guess != ans and guess != 'give up':
-			guess = input(f'\nWrong... Try again\n')
-			if guess == 'give up':
-				break
-		if guess == 'give up':
-			print(f'\nYou gave up.\nThe correct answer was {ans}.')
-		else:
-			t_end = time.time()
-			t = round(t_end-t_init,1)
-			print(f'\nCorrect! Your time was {t} seconds.')
-			if t < 10:
-				print(giveAward('bat'))
-			elif t >= 10 and t < 20:
-				print(giveAward('elephant'))
-			else:
-			 	print(giveAward('moose'))
-		
-		c = input('\nContinue? (y/n)\n')
-		
-	# Clear terminal
-	os.system('cls' if os.name =='nt' else 'clear') # nt means Windows, else Linux
-	
-	
+    # Clear terminal
+    os.system("cls" if os.name == "nt" else "clear")  # nt means Windows, else Linux
+
+    print("Welcome to the Moose Multiplication Game!")
+    print(giveAward("moose0"))
+
+    c = "y"
+
+    time.sleep(1)
+    r = str(input("\nDo you want to use the default range (2-99)? (y/n)\n"))
+
+    if r == "y":
+        minim = 2
+        maxim = 99
+    else:
+        minim = int(input("Enter minimum number:\n"))
+        maxim = int(input("Enter maximum number:\n"))
+
+    while c == "y":
+
+        # Clear terminal
+        os.system("cls" if os.name == "nt" else "clear")  # nt means Windows, else Linux
+
+        a = random.randint(minim, maxim)
+        b = random.randint(minim, maxim)
+        ans = str(a * b)
+
+        t_init = time.time()
+
+        guess = input(f"What is {a} * {b} ?\n")
+
+        while guess != ans and guess != "give up":
+            guess = input(f"\nWrong... Try again\n")
+            if guess == "give up":
+                break
+        if guess == "give up":
+            print(f"\nYou gave up.\nThe correct answer was {ans}.")
+        else:
+            t_end = time.time()
+            t = round(t_end - t_init, 1)
+            print(f"\nCorrect! Your time was {t} seconds.")
+            if t < 10:
+                print(giveAward("bat"))
+            elif t >= 10 and t < 20:
+                print(giveAward("elephant"))
+            else:
+                print(giveAward("moose"))
+
+        c = input("\nContinue? (y/n)\n")
+
+    # Clear terminal
+    os.system("cls" if os.name == "nt" else "clear")  # nt means Windows, else Linux
+
+
 def giveAward(award):
 
-	moose0 = '''
+    moose0 = """
  ___            ___
 /   \          /   \ 
 \_   \        /  __/ 
@@ -72,13 +73,16 @@ def giveAward(award):
      _/     /\ 
     /o)  (o/\ \_
     \_____/ /
-      \____/'''
+      \____/"""
 
-	moose1 = '''
+    moose1 = (
+        """
 You got over 20 seconds.
-Here's a moose.''' + moose0
+Here's a moose."""
+        + moose0
+    )
 
-	bat1 = '''
+    bat1 = """
  _______________________________________________________________________
 |                                                                       |
 |                       You got sub 10 seconds.                         |
@@ -94,9 +98,9 @@ Here's a moose.''' + moose0
 |                     ^ ilmk ^c/ )    ( \c^      ^                      |
 |                             'V')_)(_('V'                              |
 |                                 `` ``                                 |
-|_______________________________________________________________________|'''
-	
-	elephant1 = '''
+|_______________________________________________________________________|"""
+
+    elephant1 = """
  _______________________________________
 |                                       |
 |      You got sub 20 seconds.          |
@@ -112,18 +116,17 @@ Here's a moose.''' + moose0
 |        )   @).____\|  @ |             |
 |    .  /    /       (    | mrf         |
 |   \|, '_:::\  . ..  '_:::\ ..\).      |
-|_______________________________________|'''
+|_______________________________________|"""
 
-	if award == 'elephant':
-		return elephant1 
-	elif award == 'bat':
-		return bat1
-	elif award == 'moose':
-		return moose1
-	else:
-		return moose0
+    if award == "elephant":
+        return elephant1
+    elif award == "bat":
+        return bat1
+    elif award == "moose":
+        return moose1
+    else:
+        return moose0
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
-		
-
