@@ -21,6 +21,7 @@ def ask_yes_no(prompt: str) -> bool:
 
 def show_welcome() -> None:
     print("Welcome to the Moose Multiplication Game!")
+    print(MOOSE)
 
 
 def get_award(seconds: float) -> str:
