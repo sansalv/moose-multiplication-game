@@ -28,3 +28,8 @@ A simple terminal-based game for practicing mental multiplication. Players are g
 
 ```bash
 python main.py
+```
+or
+```bash
+python3 main.py
+```
