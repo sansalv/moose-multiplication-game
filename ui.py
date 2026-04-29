@@ -1,6 +1,6 @@
 import os
 
-from art import MOOSE, BAT, ELEPHANT
+from art import MOOSE, HORSE, BAT, ELEPHANT
 
 
 def clear_screen() -> None:
@@ -25,7 +25,9 @@ def show_welcome() -> None:
 
 
 def get_award(seconds: float) -> str:
-    if seconds < 10:
+    if seconds < 5:
+        return HORSE
+    elif seconds < 10:
         return BAT
     elif seconds < 20:
         return ELEPHANT
